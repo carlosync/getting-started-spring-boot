@@ -1,6 +1,8 @@
 package com.sw2you.wsspringboot.controller;
 
 import com.sw2you.wsspringboot.model.Student;
+import com.sw2you.wsspringboot.service.StudentService;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -13,14 +15,15 @@ import java.util.List;
 @RequestMapping(path = "api/v1/students")
 public class StudentController {
 
+    private final StudentService studentService;
+
+    public StudentController(StudentService studentService) {
+        this.studentService = studentService;
+    }
+
     @GetMapping
-    public List<Student> hello(){
-        return List.of(
-                new Student(1L,
-                        "Aurélio", "carlosync@gmail.com",
-                        LocalDate.of(1987, Month.AUGUST, 4),
-                        33)
-        );
+    public List<Student> getStudents(){
+        return studentService.getStudents();
     }
 
 }
