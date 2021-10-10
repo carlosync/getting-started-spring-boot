@@ -3,6 +3,7 @@ package com.sw2you.wsspringboot.controller;
 import com.sw2you.wsspringboot.model.Student;
 import com.sw2you.wsspringboot.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
@@ -24,7 +25,8 @@ public class StudentController {
     }
 
     @PostMapping
-    public void registreNewStudent(@RequestBody Student student){
+    @ResponseStatus(HttpStatus.CREATED)
+    public void registrerNewStudent(@RequestBody Student student){
         studentService.addNewStudent(student);
     }
 
