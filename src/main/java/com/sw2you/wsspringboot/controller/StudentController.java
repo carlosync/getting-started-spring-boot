@@ -3,9 +3,7 @@ package com.sw2you.wsspringboot.controller;
 import com.sw2you.wsspringboot.model.Student;
 import com.sw2you.wsspringboot.service.StudentService;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
@@ -23,6 +21,11 @@ public class StudentController {
     @GetMapping
     public List<Student> getStudents(){
         return studentService.getStudents();
+    }
+
+    @PostMapping
+    public void registreNewStudent(@RequestBody Student student){
+        studentService.addNewStudent(student);
     }
 
 }
