@@ -4,7 +4,10 @@ import com.sw2you.wsspringboot.model.Student;
 import com.sw2you.wsspringboot.repository.StudentRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.transaction.annotation.Transactional;
+
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -35,5 +38,22 @@ public class StudentService {
             throw new IllegalArgumentException("Student with id " + studentId + " does not exists!");
         }
         studentRepository.deleteById(studentId);
+    }
+
+    @Transactional
+    public void updateStudent(Long studentId, String name, String email){
+        Student student = studentRepository.findById(studentId).orElseThrow(() ->
+                new IllegalArgumentException("Student with id " + studentId + " does not exists!"));
+        if(name != null && name.length() > 0 && !Objects.equals(student.getName(), name)){
+            student.setName(name);
+        }
+        if(email != null && email.length() > 0 && !Objects.equals(student.getEmail(), email)){
+            Optional<Student> studentOptional = studentRepository.findStudentByEmail(email);
+            if(studentOptional.isPresent()){
+                throw new IllegalArgumentException("Email already exists!");
+            }
+            student.setEmail(email);
+        }
+
     }
 }

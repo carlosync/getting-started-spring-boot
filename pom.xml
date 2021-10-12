@@ -10,7 +10,7 @@
     </parent>
     <groupId>com.sw2you.wsspringboot</groupId>
     <artifactId>ws-spring-boot</artifactId>
-    <version>0.0.1-SNAPSHOT</version>
+    <version>1.0.1</version>
     <name>ws-spring-boot</name>
     <description>Getting Started with Spring Boot</description>
     <properties>
