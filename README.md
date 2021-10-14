@@ -12,7 +12,7 @@ Spring Boot is the hugely popular framework for developing Java applications in 
 In this project you will learn how to use this powerful framework to quickly develop applications in just few minutes rather than spending days configuring your application before starting writing code that matters.
 
 ## Run application
-+ cd /target
++ Open folder build = cd /build
 + java -jar ws-spring-boot-1.0.1.jar
 
 ## Versioning
